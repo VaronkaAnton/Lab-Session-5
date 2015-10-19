@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+char brackets[100]; char stack[100]; int start = 0;
+
+int bracketsDrafting(char brackets[])
+{
+	for (int i = 0; i < strlen(brackets); i++)
+	{
+		if ((brackets[i] == '(') || (brackets[i] == '{') || (brackets[i] == '['))
+		{
+			stack[start] = brackets[i];
+			start++;
+		}
+		if (((brackets[i] == ')') && (stack[start - 1] == '(')) || ((brackets[i] == '}') && (stack[start - 1] == '{')) || ((brackets[i] == ']') && (stack[start - 1] == '[')))
+			start--;
+	}
+	return start; //start = 0 => win, start <> 0 => fail
+}
+
+int main()
+{
+	return 0;
+}
