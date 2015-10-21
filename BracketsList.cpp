@@ -43,7 +43,19 @@ bool isRightOrder(char str[])
 	}
 		return head->key == NULL;
 }
+void assert(bool ans, bool right)
+{
+	if (ans == right)
+		cout << "OK" << endl;
+	else cout << "FAIL" << endl;
+}
 int main()
 {
+	assert(isRightOrder("(()[()])"), true);
+	assert(isRightOrder("{{{[{}]}}}((([[]])))"), true);
+	assert(isRightOrder("(((((((((((((((((((((((((())))))))))))))))))))))))))))))"), false);
+	assert(isRightOrder("{{{((}}}))"), false);
+	assert(isRightOrder("}()(])})(){(["), false);
+	assert(isRightOrder("{}{}{}{}{}{}{}{}{}{}{}{}{}{}[][][[]][[]](())(())(())"), true);
 	return (0);
 }
