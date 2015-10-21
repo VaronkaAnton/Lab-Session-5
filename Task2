@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+int bigFunction(char s[])
+{
+	char min[4] = "min";
+	int a[100] = { 0 };
+	char func[100] = { 0 };
+	int k = 0; int j = 0; int u = 0; bool check;
+	for (int i = 0; i < strlen(s); i++)
+	{
+		while ((s[i] != '(') && (s[i] != ')') && (s[i] != ',') && (s[i] != '\0'))
+		{
+			if (isdigit(s[i]))
+			{
+				while ((s[i] != '(') && (s[i] != ')') && (s[i] != ',') && (s[i] != '\0'))
+				{
+					a[k] = ((a[k] * 10) + (s[i] - '0'));
+					i++;
+				}
+				k++;
+				if (s[i] != ')')
+				{
+					i++;
+				}
+			}
+			else
+			{
+				u = 0;
+				for (int q = i; i < (q + 3); i++)
+				{
+					if (min[u] == s[i])
+					{
+						check = true;
+					}
+					else
+					{
+						check = false;
+					}
+					u++;
+				}
+				if (check == true)
+				{
+					func[j] = 'i';
+					j++;
+				}
+				else
+				{
+					func[j] = 'a';
+					j++;
+				}
+			}
+			if (s[i] == ')')
+			{
+				if (func[j - 1] == 'a')
+				{
+					if (a[k - 1] >= a[k - 2])
+					{
+						a[k - 2] = a[k - 1];
+						k--;
+					}
+					else
+					{
+						a[k - 2] = a[k - 2];
+						k--;
+					}
+					j--;
+				}
+				if (func[j - 1] == 'i')
+				{
+					if (a[k - 1] >= a[k - 2])
+					{
+						a[k - 2] = a[k - 2];
+						k--;
+					}
+					else
+					{
+						a[k - 2] = a[k - 1];
+						k--;
+					}
+					j--;
+				}
+			}
+		}
+	}
+	return a[0];
+}
+int main()
+{
+	return 0;
+}
