@@ -99,4 +99,7 @@ int main()
 	assert("min(7,3)", 3);
 	assert("max(9,min(7,0))", 9);
 	assert("min(min(8,9),max(8,0))", 8);
+	assert("max(max(8,min(3,4)),min(max(1,2),7))", 8);
+	assert("min(1,min(max(1,2),7))", 1);
+	assert("max(19,min(7,10))", 19);
 }
